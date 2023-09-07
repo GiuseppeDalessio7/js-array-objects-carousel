@@ -97,22 +97,29 @@ slides.forEach(slide => {
     
   });
 
-
+    
+        
+ 
 
     nextEl.addEventListener('click', function(){
+        const playLoop = setInterval(loopImg, 1000);
+         function loopImg(nextEl) { 
         console.log('cliccato su next');
-        const playLoop = setInterval(loopImg, 2000);
-        function loopImg(nextEl) {  
-      
+
+        
         // select the current slide
         const currentSlide = slidesImages[activeSlide]
         console.log(currentSlide);
         // remove the active class from the current slide
         currentSlide.classList.remove('active')
+
+        
+      
       
         // select the active thumb
         const currentThumb = document.querySelector('.thumbnails > img.active')
         console.log(currentThumb);
+        //  clearInterval(playLoop)
         // remove the active class from the active thumb
         currentThumb.classList.remove('active')
       
@@ -120,7 +127,7 @@ slides.forEach(slide => {
         // activeSlide = 4
       
         if (activeSlide === slidesImages.length - 1) {
-          activeSlide = 1
+          activeSlide = 0
           // activeSlide = 5
         } else {
           // increment the activeSlide of 1
@@ -136,17 +143,20 @@ slides.forEach(slide => {
       
         
         /* TODO */
-      
-        clearInterval(playLoop)
+        
+       
+        
         // select the next thumb
         const nextThumb = document.querySelectorAll('.thumb')[activeSlide]
         console.log(nextThumb);
         // add to the next thumb the active class
         nextThumb.classList.add('active')
-      
-        }
+    }
+
+})
         
-      })
+      
+     
     
 
 
@@ -158,6 +168,8 @@ slides.forEach(slide => {
 
 // activeSlide = 0
 prevEl.addEventListener('click', function () {
+ 
+      
   console.log('cliccato su prev');
 
 
@@ -184,4 +196,5 @@ prevEl.addEventListener('click', function () {
   console.log(nextSlide);
   // add the active class to the next slide
   nextSlide.classList.add('active')
+
 })
