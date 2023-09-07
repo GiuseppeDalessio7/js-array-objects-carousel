@@ -98,10 +98,11 @@ slides.forEach(slide => {
   });
 
 
-const playLoop = setInterval(loopImg, 2000);
-function loopImg(nextEl) {
+
     nextEl.addEventListener('click', function(){
         console.log('cliccato su next');
+        const playLoop = setInterval(loopImg, 2000);
+        function loopImg(nextEl) {  
       
         // select the current slide
         const currentSlide = slidesImages[activeSlide]
@@ -119,13 +120,13 @@ function loopImg(nextEl) {
         // activeSlide = 4
       
         if (activeSlide === slidesImages.length - 1) {
-          activeSlide = 0
+          activeSlide = 1
           // activeSlide = 5
         } else {
           // increment the activeSlide of 1
           activeSlide++
         }
-      
+        
       
         // select the next slide
         const nextSlide = slidesImages[activeSlide]
@@ -133,21 +134,21 @@ function loopImg(nextEl) {
         // add the active class to the next slide
         nextSlide.classList.add('active')
       
-        clearInterval(playLoop)
+        
         /* TODO */
       
-      
+        clearInterval(playLoop)
         // select the next thumb
         const nextThumb = document.querySelectorAll('.thumb')[activeSlide]
         console.log(nextThumb);
         // add to the next thumb the active class
         nextThumb.classList.add('active')
       
-       
-
+        }
+        
       })
     
-}
+
 
 // intercept click on the next icon 
 
