@@ -2,31 +2,31 @@
 
 // definisco la costante slide in cui metto le immagini
 const slides = [
-    {
-        position : 1,
-        url : './assets/img/01.webp',
-       
-    },
-    {
-        position : 2,
-        url :'./assets/img/02.webp',
-       
-    },
-    {
-        position : 3,
-        url :'./assets/img/03.webp',
-        
-    },
-    {
-        position : 4,
-        url :'./assets/img/04.webp',
-        
-    },
-    {
-        position : 5,
-        url :'./assets/img/05.webp',
-       
-    },
+  {
+    position: 1,
+    url: './assets/img/01.webp',
+
+  },
+  {
+    position: 2,
+    url: './assets/img/02.webp',
+
+  },
+  {
+    position: 3,
+    url: './assets/img/03.webp',
+
+  },
+  {
+    position: 4,
+    url: './assets/img/04.webp',
+
+  },
+  {
+    position: 5,
+    url: './assets/img/05.webp',
+
+  },
 ]
 
 
@@ -41,40 +41,24 @@ const nextEl = document.querySelector('.next')
 
 slides.forEach(slide => {
 
-    //const imageURL = slide.url
+  //const imageURL = slide.url
 
-    const slideMarkup = `<img class="${activeSlide === slide.position ? 'active' : '' }" src="${slide.url}" alt="">`
+  const slideMarkup = `<img class="${activeSlide === slide.position ? 'active' : ''}" src="${slide.url}" alt="">`
 
-    console.log(slideMarkup);
+  console.log(slideMarkup);
 
-    //const slideMarkup = `<img src="${slide.url}" alt="">`
-  
-    sliderImagesEl.insertAdjacentHTML('beforeend', slideMarkup)
+  //const slideMarkup = `<img src="${slide.url}" alt="">`
 
-
-    
-  });
+  sliderImagesEl.insertAdjacentHTML('beforeend', slideMarkup)
 
 
+
+});
 
 
 
 
-//console.log(sliderImagesEl);
 
-/* Print all images into the dom */
-// loop over the slides 
-// for (let i = 0; i < slides.length; i++) {
-//   const slidePath = slides[i];
-//   console.log(slidePath);
-  
-//   // for each slide we create the markup
-//   const slideMarkup = `<img class="${activeSlide === i ? 'active' : '' }" src="${slidePath}" alt="">`
-//   //console.log(slideMarkup);
-
-//   sliderImagesEl.insertAdjacentHTML('beforeend', slideMarkup)
-
-// }
 
 
 
@@ -89,75 +73,58 @@ const thumbsElement = document.querySelector('.thumbnails')
 
 slides.forEach(slide => {
 
-    const thumbPath = slide.position;
-    const thumbMarkup = `<img class="thumb ${activeSlide === thumbPath ? 'active' : ''}" src="${slide.url}" alt="">`
-    //console.log(thumbMarkup);
-  
-    thumbsElement.insertAdjacentHTML('beforeend', thumbMarkup)
-    
-  });
+  const thumbPath = slide.position;
+  const thumbMarkup = `<img class="thumb ${activeSlide === thumbPath ? 'active' : ''}" src="${slide.url}" alt="">`
+  //console.log(thumbMarkup);
 
-    
-        
- 
+  thumbsElement.insertAdjacentHTML('beforeend', thumbMarkup)
 
-    nextEl.addEventListener('click', function(){
-        const playLoop = setInterval(loopImg, 1000);
-         function loopImg(nextEl) { 
-        console.log('cliccato su next');
+});
 
-        
-        // select the current slide
-        const currentSlide = slidesImages[activeSlide]
-        console.log(currentSlide);
-        // remove the active class from the current slide
-        currentSlide.classList.remove('active')
 
-        
-      
-      
-        // select the active thumb
-        const currentThumb = document.querySelector('.thumbnails > img.active')
-        console.log(currentThumb);
-        //  clearInterval(playLoop)
-        // remove the active class from the active thumb
-        currentThumb.classList.remove('active')
-      
-        
-        // activeSlide = 4
-      
-        if (activeSlide === slidesImages.length - 1) {
-          activeSlide = 0
-          // activeSlide = 5
-        } else {
-          // increment the activeSlide of 1
-          activeSlide++
-        }
-        
-      
-        // select the next slide
-        const nextSlide = slidesImages[activeSlide]
-        console.log(nextSlide);
-        // add the active class to the next slide
-        nextSlide.classList.add('active')
-      
-        
-        /* TODO */
-        
-       
-        
-        // select the next thumb
-        const nextThumb = document.querySelectorAll('.thumb')[activeSlide]
-        console.log(nextThumb);
-        // add to the next thumb the active class
-        nextThumb.classList.add('active')
+
+
+let playLoop;
+
+nextEl.addEventListener('click', function () {
+  clearInterval(playLoop);
+
+  playLoop = setInterval(loopImg, 2000);
+  function loopImg() {
+    console.log('cliccato su next');
+
+    // select the current slide
+    const currentSlide = slidesImages[activeSlide];
+    console.log(currentSlide);
+    // remove the active class from the current slide
+    currentSlide.classList.remove('active');
+
+    // select the active thumb
+    const currentThumb = document.querySelector('.thumbnails > img.active');
+    console.log(currentThumb);
+    // remove the active class from the active thumb
+    currentThumb.classList.remove('active');
+
+    if (activeSlide === slidesImages.length - 1) {
+      activeSlide = 0;
+    } else {
+      activeSlide++;
     }
 
-})
-        
-      
-     
-    
+    // select the next slide
+    const nextSlide = slidesImages[activeSlide];
+    console.log(nextSlide);
+    // add the active class to the next slide
+    nextSlide.classList.add('active');
+
+    // select the next thumb
+    const nextThumb = document.querySelectorAll('.thumb')[activeSlide];
+    console.log(nextThumb);
+    // add the active class to the next thumb
+    nextThumb.classList.add('active');
+  }
+});
+
 
 
 // intercept click on the next icon 
@@ -168,8 +135,8 @@ slides.forEach(slide => {
 
 // activeSlide = 0
 prevEl.addEventListener('click', function () {
- 
-      
+
+
   console.log('cliccato su prev');
 
 
@@ -183,11 +150,11 @@ prevEl.addEventListener('click', function () {
     activeSlide = slidesImages.length - 1
     // activeSlide = 5
   } else {
-      // decrement the activeSlide of 1
-      activeSlide--
+    // decrement the activeSlide of 1
+    activeSlide--
   }
-  
-  
+
+
   console.log(activeSlide);
 
 
@@ -198,3 +165,4 @@ prevEl.addEventListener('click', function () {
   nextSlide.classList.add('active')
 
 })
+
